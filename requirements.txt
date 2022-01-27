@@ -2,8 +2,6 @@ pandas
 streamlit
 numpy
 matplotlib
-time 
-datetime
 click==8.0.3
 colorama==0.4.4
 Flask==2.0.2
