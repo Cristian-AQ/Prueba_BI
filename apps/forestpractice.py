@@ -16,38 +16,35 @@ from sklearn.metrics import classification_report,plot_confusion_matrix
 from sklearn.metrics import plot_roc_curve
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
+import pandas_datareader as data
 from sklearn import metrics
 import streamlit as st
 
 def app():
     st.title('Predicción de tendencia de acciones')
-    user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
-    st.title('Model - RANDOMFORESTCLASSIFIER')
-    ticker = user_input
-    period1 = int(time.mktime(datetime.datetime(2010, 1, 1, 23, 59).timetuple()))
-    period2 = int(time.mktime(datetime.datetime(2022, 1, 10, 23, 59).timetuple()))
-    interval = '1d'
-    query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
-    data = pd.read_csv(query_string)
-
+    start = '2004-08-18'
+    end = '2022-01-20'
+    st.title('Predicción de tendencia de acciones')
+    user_input = st.text_input('Introducir cotización bursátil' , 'GOOG')
+    df = data.DataReader(user_input, 'yahoo', start, end)
     # Seleccion de datos
-    data['highest hight'] = data['High'].rolling(window=10).max()
-    data['lowest low'] = data['Low'].rolling(window=10).min()
-    data['trigger'] = np.where(data['High']==data['highest hight'],1,np.nan)
-    data['trigger'] = np.where(data['Low']==data['lowest low'],0,data['trigger'])
-    data['position'] = data['trigger'].ffill().fillna(-1) 
-    data.drop(data.index[[0,1,2,3,4,5,6,7,8,9]])
+    df['highest hight'] = df['High'].rolling(window=10).max()
+    df['lowest low'] = df['Low'].rolling(window=10).min()
+    df['trigger'] = np.where(df['High']==df['highest hight'],1,np.nan)
+    df['trigger'] = np.where(df['Low']==df['lowest low'],0,df['trigger'])
+    df['position'] = df['trigger'].ffill().fillna(-1) 
+    df.drop(df.index[[0,1,2,3,4,5,6,7,8,9]])
 
     # Eleccion de datos
-    data.drop(['Date','Adj Close','Volume','highest hight', 'lowest low', 'trigger'],axis=1)
+    df.drop(['Date','Adj Close','Volume','highest hight', 'lowest low', 'trigger'],axis=1)
 
     # Describiendo los datos
     st.subheader('Datos del 2010 al 2022') 
-    st.write(data.describe())
+    st.write(df.describe())
 
     # Separacion de datos de entrenamiento y prueba
-    X = data.drop('position',axis=1)
-    y = data['position']
+    X = df.drop('position',axis=1)
+    y = df['position']
     X_train,X_test, y_train,y_test= train_test_split(X,y,test_size=0.20,random_state=101)
 
     # Uso del modelo
