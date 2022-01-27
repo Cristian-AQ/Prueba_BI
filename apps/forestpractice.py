@@ -57,13 +57,13 @@ def app():
     st.write(modelo.score(X_test,y_test))
 
     # Mejorando el score
-    while True:
-      modelo = RandomForestClassifier()
-      modelo.fit(X_train,y_train)
-      if modelo.score(X_test,y_test)>0.689:
-        break
-    st.subheader('Nuevo score del modelo') 
-    st.write(modelo.score(X_test,y_test))
+    # while True:
+    #   modelo = RandomForestClassifier()
+    #   modelo.fit(X_train,y_train)
+    #   if modelo.score(X_test,y_test)>0.689:
+    #     break
+    # st.subheader('Nuevo score del modelo') 
+    # st.write(modelo.score(X_test,y_test))
 
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
