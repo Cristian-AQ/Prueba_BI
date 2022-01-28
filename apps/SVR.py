@@ -19,8 +19,8 @@ def app():
     user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
     st.title('Model - Support Vector Regresion')
     ticker = user_input
-    period1 = int(time.mktime(datetime.datetime(2010, 1, 1, 23, 59).timetuple()))
-    period2 = int(time.mktime(datetime.datetime(2022, 1, 10, 23, 59).timetuple()))
+    period1 = int(time.mktime(datetime.datetime(2021, 12, 1, 23, 59).timetuple()))
+    period2 = int(time.mktime(datetime.datetime(2021, 12, 31, 23, 59).timetuple()))
     interval = '1d'
     query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
     df = pd.read_csv(query_string)
