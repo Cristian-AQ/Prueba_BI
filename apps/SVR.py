@@ -60,6 +60,7 @@ def app():
     rbf_svr.fit(days, adj_close_prices)
 
     # Graficamos los modelos cual fue el mejor modelo
+    st.subheader('SVR - Score Modelos')
     plt.figure(figsize=(16,8))
     plt.scatter(days, adj_close_prices, color='red', label='Data')
     plt.plot(days, rbf_svr.predict(days), color='green', label='Modelo RBF')
