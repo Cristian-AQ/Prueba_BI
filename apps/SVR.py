@@ -37,7 +37,7 @@ def app():
 
     # Describiendo los datos
     st.subheader('Datos del 2021 de Diciembre') 
-    st.write(data.head(10))
+    st.write(data.head())
     
     
     for day in df_days:
