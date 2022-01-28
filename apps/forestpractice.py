@@ -85,4 +85,4 @@ def app():
                     np.float_(low.title()),
                     np.float_(close.title())]
         predictS = modelo.predict(x_in)
-        st.success('EL CULTIVO RECOMENDADO ES: {}'.format(predictS[0]).upper())
+        st.success('EL CULTIVO RECOMENDADO ES: {}'.format(predictS).upper())
