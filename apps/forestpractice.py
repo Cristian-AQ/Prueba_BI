@@ -68,15 +68,14 @@ def app():
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
     st.subheader('Classification Report')
-    st.dataframe(classification_report(y_test,pred_modelo))
+    classification_report(y_test,pred_modelo)
     st.subheader('Confusion Matrix')
-    fig = plt.figure(figsize = (12,6))
     st.pyplot(plot_confusion_matrix(modelo,X_test,y_test))
-    st.pyplot(fig)
+    st.pyplot()
 
     st.subheader('ROC')
-    rfc_disp = plot_roc_curve(modelo, X_test, y_test, alpha = 0.8)
-    rfc_disp
+    plot_roc_curve(modelo, X_test, y_test, alpha = 0.8)
+    st.pyplot()
     # fig = plt.figure(figsize = (12,6))
     # plt.show(rfc_disp)
     # st.pyplot(fig)
