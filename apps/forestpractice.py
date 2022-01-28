@@ -19,9 +19,6 @@ from sklearn import metrics
 import streamlit as st
 
 def app():
-    st.markdown('''
-                <a href='https://www.youtube.com/watch?v=hoPvOIJvrb8'>HOME</a>
-    ''', unsafe_allow_html=True)
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title('Predicción de tendencia de acciones')
     user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
