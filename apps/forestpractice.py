@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 from sklearn import metrics
 import streamlit as st
 
+@st.cache(persist=True)
 def app():
     st.title('Predicción de tendencia de acciones')
     user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
