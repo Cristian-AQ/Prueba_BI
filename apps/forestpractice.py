@@ -78,7 +78,7 @@ def app():
     close = st.text_input("Close:")
     
     # El botón predicción se usa para iniciar el procesamiento
-    if st.button("Predicción :"):
+    if st.button("Predicción"):
         predictS = modelo.predict([[np.float_(open.title()),np.float_(high.title()),np.float_(low.title()),np.float_(close.title())]])
         if predictS[0] == 1:
             st.success('SEÑAL DE COMPRA')
