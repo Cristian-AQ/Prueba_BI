@@ -1,8 +1,9 @@
+from flask import Flask
 import streamlit as st
-from multiapp import MultiApp
+# from multiapp import MultiApp
 from apps import forestpractice # import your app modules here
 
-app = MultiApp()
+app = Flask(__name__)
 
 st.markdown("""
 #  Inteligencia de Negocios - Grupo 6
@@ -10,4 +11,5 @@ st.markdown("""
 
 app.add_app("RandomForestClassifier", forestpractice.app)
 # The main app
-app.run()
+if __name__ == '__main__':
+    app.run()
