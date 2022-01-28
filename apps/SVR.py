@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import time
 import datetime
-from pandas_datareader import data
+# from pandas_datareader import data
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVR
 
