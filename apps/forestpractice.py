@@ -11,7 +11,7 @@ import pandas as pd
 import time
 import datetime
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report,plot_confusion_matrix
+from sklearn.metrics import classification_report,plot_confusion_matrix,plot_precision_recall_curve
 from sklearn.metrics import plot_roc_curve
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
@@ -60,13 +60,18 @@ def app():
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
     st.subheader('Classification Report')
-    classification_report(y_test,pred_modelo)
+    st.subheader(classification_report(y_test,pred_modelo))
+    # classification_report(y_test,pred_modelo)
     st.subheader('Confusion Matrix')
     plot_confusion_matrix(modelo,X_test,y_test)
     st.pyplot()
 
     st.subheader('ROC')
     plot_roc_curve(modelo, X_test, y_test, alpha = 0.8)
+    st.pyplot()
+    
+    st.subheader('RECALL CURVE')
+    plot_precision_recall_curve(modelo, X_test, y_test, alpha = 0.8)
     st.pyplot()
     
     # Prediccion del modelo
