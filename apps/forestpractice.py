@@ -54,7 +54,7 @@ def app():
     modelo = RandomForestClassifier()
     modelo.fit(X_train,y_train)
     st.subheader('Score del modelo') 
-    modelo.score(X_test,y_test)
+    st.write(modelo.score(X_test,y_test))
 
     # Mejorando el score
     # while True:
@@ -68,14 +68,14 @@ def app():
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
     st.subheader('Classification Report')
-    classification_report(y_test,pred_modelo)
+    print(classification_report(y_test,pred_modelo))    
     st.subheader('Confusion Matrix')
     fig = plt.figure(figsize = (12,6))
-    plt.plot(plot_confusion_matrix(modelo,X_test,y_test))
+    plot_confusion_matrix(modelo,X_test,y_test)
     st.pyplot(fig)
 
     st.subheader('ROC')
     rfc_disp = plot_roc_curve(modelo, X_test, y_test, alpha = 0.8)
     fig = plt.figure(figsize = (12,6))
-    plt.plot(rfc_disp)
+    plt.show(rfc_disp)
     st.pyplot(fig)
