@@ -78,11 +78,9 @@ def app():
     close = st.text_input("Close:")
     
     # El botón predicción se usa para iniciar el procesamiento
-    if st.button("Predicción :"): 
-        #x_in = list(np.float_((Datos.title().split('\t'))))
-        # x_in =[np.float_(open.title()),
-        #             np.float_(high.title()),
-        #             np.float_(low.title()),
-        #             np.float_(close.title())]
+    if st.button("Predicción :"):
         predictS = modelo.predict([[np.float_(open.title()),np.float_(high.title()),np.float_(low.title()),np.float_(close.title())]])
-        st.success('EL CULTIVO RECOMENDADO ES: {}'.format(predictS[0]).upper())
+        if predictS[0] == 1:
+            st.success('SEÑAL DE COMPRA')
+        else:
+            st.success('SEÑAL DE VENTA')
