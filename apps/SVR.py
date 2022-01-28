@@ -60,13 +60,14 @@ def app():
     rbf_svr.fit(days, adj_close_prices)
 
     # Graficamos los modelos cual fue el mejor modelo
-    st.figure(figsize=(16,8))
-    st.scatter(days, adj_close_prices, color='red', label='Data')
-    st.plot(days, rbf_svr.predict(days), color='green', label='Modelo RBF')
-    st.plot(days, pol_svr.predict(days), color='orange', label='Modelo Polinomial')
-    st.plot(days, lin_svr.predict(days), color='blue', label='Modelo Lineal')
-    st.legend()
-    st.show()
+    plt.figure(figsize=(16,8))
+    plt.scatter(days, adj_close_prices, color='red', label='Data')
+    plt.plot(days, rbf_svr.predict(days), color='green', label='Modelo RBF')
+    plt.plot(days, pol_svr.predict(days), color='orange', label='Modelo Polinomial')
+    plt.plot(days, lin_svr.predict(days), color='blue', label='Modelo Lineal')
+    plt.legend()
+    st.pyplot()
+
 
 
     #Mostrar el precio predecido para el dato dado
