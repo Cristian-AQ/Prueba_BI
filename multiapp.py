@@ -40,11 +40,11 @@ class MultiApp:
 
     def run(self):
         # app = st.sidebar.radio(
-        st.markdown('''
-                <a href='https://www.youtube.com/watch?v=hoPvOIJvrb8' target="_self">HOME</a>
-        ''', unsafe_allow_html=True)
+        # st.markdown('''
+        #         <a href='https://www.youtube.com/watch?v=hoPvOIJvrb8' target="_self">HOME</a>
+        # ''', unsafe_allow_html=True)
         app = st.selectbox(
-            'Navigation',
+            'Elija el modelo de su preferencia',
             self.apps,
             format_func=lambda app: app['title'])
 

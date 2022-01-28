@@ -20,8 +20,8 @@ import streamlit as st
 
 def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.title('Predicción de tendencia de acciones')
-    user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
+    st.title('Predicción de acciones')
+    user_input = st.text_input('Introducir TICKER de la empresa' , 'MSFT')
     st.title('Model - RANDOMFORESTCLASSIFIER')
     ticker = user_input
     period1 = int(time.mktime(datetime.datetime(2010, 1, 1, 23, 59).timetuple()))
