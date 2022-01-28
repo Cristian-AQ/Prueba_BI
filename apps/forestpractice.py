@@ -67,11 +67,12 @@ def app():
 
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
+    fig = plt.figure(figsize = (12,6))
     st.subheader('Classification Report')
     classification_report(y_test,pred_modelo)
     st.subheader('Confusion Matrix')
     plot_confusion_matrix(modelo,X_test,y_test)
-    st.pyplot()
+    st.pyplot(fig)
 
     st.subheader('ROC')
     plot_roc_curve(modelo, X_test, y_test, alpha = 0.8)
