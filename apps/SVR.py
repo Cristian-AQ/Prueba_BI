@@ -36,8 +36,8 @@ def app():
     df_adj_close = data.loc[:, 'Adj Close']
 
     # Describiendo los datos
-    st.subheader('Datos del 2021 al 2022') 
-    st.write(data.describe())
+    st.subheader('Datos del 2021 de Diciembre') 
+    st.write(data.head(10))
     
     
     for day in df_days:
