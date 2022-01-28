@@ -41,7 +41,8 @@ def app():
 
     # Eleccion de datos
     df = data.drop(['Date','Adj Close','Volume','highest hight', 'lowest low', 'trigger'],axis=1)
-
+    df = df.dropna()
+    
     # Describiendo los datos
     st.subheader('Datos del 2010 al 2022') 
     st.write(df.describe())
@@ -77,6 +78,3 @@ def app():
     st.subheader('ROC')
     plot_roc_curve(modelo, X_test, y_test, alpha = 0.8)
     st.pyplot()
-    # fig = plt.figure(figsize = (12,6))
-    # plt.show(rfc_disp)
-    # st.pyplot(fig)
