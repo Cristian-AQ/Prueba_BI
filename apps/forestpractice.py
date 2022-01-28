@@ -55,7 +55,7 @@ def app():
     modelo = RandomForestClassifier()
     modelo.fit(X_train,y_train)
     st.subheader('Score del modelo') 
-    st.write(modelo.score(X_test,y_test))
+    st.success(modelo.score(X_test,y_test))
 
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)

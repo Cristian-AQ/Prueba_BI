@@ -79,5 +79,5 @@ def app():
 
 
     # Mostrar el precio real para el dato dado
-    st.write('El precio real es: ', df['Adj Close'][21])
+    st.success('El precio real es: ', df['Adj Close'][21])
 
