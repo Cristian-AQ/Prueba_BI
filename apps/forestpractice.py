@@ -20,6 +20,7 @@ from sklearn import metrics
 import streamlit as st
 
 def app():
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title('Predicción de tendencia de acciones')
     user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
     st.title('Model - RANDOMFORESTCLASSIFIER')
