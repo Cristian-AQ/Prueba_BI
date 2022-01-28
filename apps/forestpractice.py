@@ -76,6 +76,6 @@ def app():
 
     st.subheader('ROC')
     rfc_disp = plot_roc_curve(modelo, X_test, y_test, alpha = 0.8)
-    fig = plt.figure(figsize = (12,6))
-    plt.show(rfc_disp)
-    st.pyplot(fig)
+    # fig = plt.figure(figsize = (12,6))
+    # plt.show(rfc_disp)
+    # st.pyplot(fig)
