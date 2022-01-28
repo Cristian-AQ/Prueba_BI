@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1LGe1tVRZsFTPS9DXAIplCH962ykuvQBV
 """
 
+from turtle import onclick
 import numpy as np
 import pandas as pd
 import time
@@ -20,6 +21,7 @@ from sklearn import metrics
 import streamlit as st
 
 def app():
+    st.button('HOME',on_click='https://www.youtube.com/watch?v=nSw96qUbK9o&t=252s')
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title('Predicción de tendencia de acciones')
     user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
