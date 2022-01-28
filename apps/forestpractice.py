@@ -60,7 +60,7 @@ def app():
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
     st.subheader('Classification Report')
-    st.markdown(classification_report(y_test,pred_modelo))
+    st.text(classification_report(y_test,pred_modelo))
     # st.write(st.table(classification_report(y_test,pred_modelo)))
     st.subheader('Confusion Matrix')
     plot_confusion_matrix(modelo,X_test,y_test)
