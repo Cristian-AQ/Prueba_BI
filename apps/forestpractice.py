@@ -68,7 +68,7 @@ def app():
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
     st.subheader('Classification Report')
-    print(classification_report(y_test,pred_modelo))    
+    classification_report(y_test,pred_modelo)  
     st.subheader('Confusion Matrix')
     fig = plt.figure(figsize = (12,6))
     plot_confusion_matrix(modelo,X_test,y_test)
