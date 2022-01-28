@@ -20,7 +20,6 @@ import streamlit as st
 
 def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.boton('HOME',on_click='https://www.youtube.com/watch?v=nSw96qUbK9o&t=252s')
     st.title('Predicción de tendencia de acciones')
     user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
     st.title('Model - RANDOMFORESTCLASSIFIER')
