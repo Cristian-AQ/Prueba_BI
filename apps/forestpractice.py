@@ -16,7 +16,6 @@ from sklearn.metrics import classification_report,plot_confusion_matrix
 from sklearn.metrics import plot_roc_curve
 from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
-import pandas_datareader as data
 from sklearn import metrics
 import streamlit as st
 
@@ -37,18 +36,18 @@ def app():
     data['trigger'] = np.where(data['High']==data['highest hight'],1,np.nan)
     data['trigger'] = np.where(data['Low']==data['lowest low'],0,data['trigger'])
     data['position'] = data['trigger'].ffill().fillna(-1) 
-    data.drop(data.index[[0,1,2,3,4,5,6,7,8,9]])
+    data = data.drop(data.index[[0,1,2,3,4,5,6,7,8,9]])
 
     # Eleccion de datos
-    data.drop(['Date','Adj Close','Volume','highest hight', 'lowest low', 'trigger'],axis=1)
+    df = data.drop(['Date','Adj Close','Volume','highest hight', 'lowest low', 'trigger'],axis=1)
 
     # Describiendo los datos
     st.subheader('Datos del 2010 al 2022') 
-    st.write(data.describe())
+    st.write(df.describe())
 
     # Separacion de datos de entrenamiento y prueba
-    X = data.drop('position',axis=1)
-    y = data['position']
+    X = df.drop('position',axis=1)
+    y = df['position']
     X_train,X_test, y_train,y_test= train_test_split(X,y,test_size=0.20,random_state=101)
 
     # Uso del modelo
