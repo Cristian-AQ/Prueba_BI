@@ -70,7 +70,7 @@ def app():
     st.subheader('Classification Report')
     classification_report(y_test,pred_modelo)
     st.subheader('Confusion Matrix')
-    st.pyplot(plot_confusion_matrix(modelo,X_test,y_test))
+    plot_confusion_matrix(modelo,X_test,y_test)
     st.pyplot()
 
     st.subheader('ROC')
