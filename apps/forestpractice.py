@@ -36,7 +36,7 @@ def app():
     data['lowest low'] = data['Low'].rolling(window=10).min()
     data['trigger'] = np.where(data['High']==data['highest hight'],1,np.nan)
     data['trigger'] = np.where(data['Low']==data['lowest low'],0,data['trigger'])
-    data['position'] = data['trigger'].ffill().fillna(-1) 
+    data['position'] = data['trigger'].ffill()
     data = data.drop(data.index[[0,1,2,3,4,5,6,7,8,9]])
 
     # Eleccion de datos
