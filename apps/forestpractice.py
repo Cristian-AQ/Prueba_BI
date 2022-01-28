@@ -54,7 +54,7 @@ def app():
     modelo = RandomForestClassifier()
     modelo.fit(X_train,y_train)
     st.subheader('Score del modelo') 
-    st.write(modelo.score(X_test,y_test))
+    modelo.score(X_test,y_test)
 
     # Mejorando el score
     # while True:
@@ -68,7 +68,7 @@ def app():
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
     st.subheader('Classification Report')
-    st.write(classification_report(y_test,pred_modelo))
+    classification_report(y_test,pred_modelo)
     st.subheader('Confusion Matrix')
     fig = plt.figure(figsize = (12,6))
     plt.plot(plot_confusion_matrix(modelo,X_test,y_test))
