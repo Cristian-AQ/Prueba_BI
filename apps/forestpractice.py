@@ -85,7 +85,4 @@ def app():
         #             np.float_(low.title()),
         #             np.float_(close.title())]
         predictS = modelo.predict([[np.float_(open.title()),np.float_(high.title()),np.float_(low.title()),np.float_(close.title())]])
-        if predictS == '[1.]':
-            st.success('COMPRAR:')
-        else:
-            st.success('VENDER')
+        st.success('EL CULTIVO RECOMENDADO ES: {}'.format(predictS[0]).upper())
