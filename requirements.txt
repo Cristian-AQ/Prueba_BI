@@ -17,3 +17,4 @@ sklearn==0.0
 SQLAlchemy==1.4.29
 threadpoolctl==3.0.0
 Werkzeug==2.0.2
+seaborn
