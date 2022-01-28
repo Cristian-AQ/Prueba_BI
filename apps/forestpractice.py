@@ -57,15 +57,6 @@ def app():
     st.subheader('Score del modelo') 
     st.write(modelo.score(X_test,y_test))
 
-    # Mejorando el score
-    # while True:
-    #   modelo = RandomForestClassifier()
-    #   modelo.fit(X_train,y_train)
-    #   if modelo.score(X_test,y_test)>0.689:
-    #     break
-    # st.subheader('Nuevo score del modelo') 
-    # st.write(modelo.score(X_test,y_test))
-
     #Visualizaciones 
     pred_modelo = modelo.predict(X_test)
     st.subheader('Classification Report')
@@ -77,3 +68,21 @@ def app():
     st.subheader('ROC')
     plot_roc_curve(modelo, X_test, y_test, alpha = 0.8)
     st.pyplot()
+    
+    # Prediccion del modelo
+    st.subheader('Ingrese los datos para iniciar la prediccion')
+    # Lecctura de datos
+    open = st.text_input("Open:")
+    high = st.text_input("High:")
+    low = st.text_input("Low:")
+    close = st.text_input("Close:")
+    
+    # El botón predicción se usa para iniciar el procesamiento
+    if st.button("Predicción :"): 
+        #x_in = list(np.float_((Datos.title().split('\t'))))
+        x_in =[np.float_(open.title()),
+                    np.float_(high.title()),
+                    np.float_(low.title()),
+                    np.float_(close.title())]
+        predictS = modelo.predict(x_in)
+        st.success('EL CULTIVO RECOMENDADO ES: {}'.format(predictS[0]).upper())
