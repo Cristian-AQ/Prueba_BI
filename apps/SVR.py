@@ -17,7 +17,7 @@ def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title('Predicción de tendencia de acciones')
     user_input = st.text_input('Introducir cotización bursátil' , 'MSFT')
-    st.title('Model - RANDOMFORESTCLASSIFIER')
+    st.title('Model - Support Vector Regresion')
     ticker = user_input
     period1 = int(time.mktime(datetime.datetime(2010, 1, 1, 23, 59).timetuple()))
     period2 = int(time.mktime(datetime.datetime(2022, 1, 10, 23, 59).timetuple()))
@@ -28,14 +28,18 @@ def app():
     # Seleccion de datos
     # Obtenemos la data menos la ultima fila
     data = df.head(len(df)-1)
-    data
 
     days = list()
     adj_close_prices = list()
     # Obtenemos la fecha y precios de cierre ajustados
     df_days = data.loc[:, 'Date']
     df_adj_close = data.loc[:, 'Adj Close']
-    print(df_days)
+
+    # Describiendo los datos
+    st.subheader('Datos del 2021 al 2022') 
+    st.write(data.describe())
+    
+    
     for day in df_days:
         days.append([int(day.split('-')[2])])
 
