@@ -60,18 +60,6 @@ def app():
     )
     st.pyplot()
     
-    #prepare dataset to work with 
-    ticker_df = df[['Date', 'High', 'Open', 'Low', 'Close']]
-    ticker_df.head(10)
-    
-    plt.figure(figsize=(16,8))
-    plt.title('Precios de cierre de acciones')
-    plt.plot(ticker_df['Date'], ticker_df['Close'])
-    plt.xlabel('Fecha',fontsize=18)
-    plt.ylabel('Precio de cierre US($)',fontsize=18)
-    plt.style.use('fivethirtyeight')
-    st.pyplot()
-    
     # TRADING
     
     # Target variable
