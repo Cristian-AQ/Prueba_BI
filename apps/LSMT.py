@@ -6,7 +6,7 @@ import streamlit as st
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from sklearn.preprocessing import MinMaxScaler
-import matplotlib.pyplot as 
+import matplotlib.pyplot as plt
 import streamlit as st
 
 def app():
