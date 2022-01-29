@@ -26,6 +26,8 @@ def app():
 
     #plot
         # Describiendo los datos
-    st.subheader('Close Price history') 
+    st.subheader('Datos del 2021 de Diciembre') 
+    st.write(df.head())
+    st.subheader('Historial del precio de cierre') 
     st.write(df['Close'])
 
