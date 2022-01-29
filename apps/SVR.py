@@ -112,4 +112,4 @@ def app():
 
     # Mostrar el precio real para el dato dado
     st.subheader('El precio real es:')
-    st.write(df_svr['Adj Close'][len(df_svr)-1])
+    st.success(df_svr['Adj Close'][len(df_svr)-1])

@@ -13,7 +13,7 @@ def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title('Predicción de acciones')
     user_input = st.text_input('Introducir TICKER de la empresa' , 'MSFT')
-    st.title('Model - SVM')
+    st.title('Model - SUPPORT VECTOR CLASSIFIER')
     ticker = user_input
     period1 = int(time.mktime(datetime.datetime(2010, 1, 1, 23, 59).timetuple()))
     period2 = int(time.mktime(datetime.datetime(2022, 1, 10, 23, 59).timetuple()))
