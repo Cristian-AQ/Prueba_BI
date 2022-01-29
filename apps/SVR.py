@@ -63,6 +63,8 @@ def app():
     st.subheader(f'Datos del dia {dia_presente} del mes {mes_presente} del año {anio_presente}') 
     st.write(data)
     
+    st.subheader('Informacion de la data') 
+    st.write(data.describe())
     
     for day in df_days:
         days.append([int(day.split('-')[2])])
