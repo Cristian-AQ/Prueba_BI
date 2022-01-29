@@ -8,6 +8,8 @@ from tensorflow.keras.layers import LSTM, Dense
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import streamlit as st
+from sklearn.model_selection import train_test_split
+
 
 def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -42,12 +44,14 @@ def app():
     y = df['position']
     X_train,X_test, y_train,y_test= train_test_split(X,y,test_size=0.20,random_state=101)
 
-    
+    dim_entrada = (X_train.shape[1],1)
+    dim_salida = 1
+    na = 50 #numero de neuronas
     modelo = Sequential()
     modelo.add(LSTM(units=na, input_shape=dim_entrada)) #se especifica el num de neuronas
     modelo.add(Dense(units=dim_salida))
     modelo.compile(optimizer='rmsprop', loss='mse')
-    modelo.fit(X_train,Y_train,epochs=20,batch_size=32)
+    modelo.fit(X_train,y_train,epochs=20,batch_size=32)
     st.subheader('Score del modelo') 
     st.success(modelo.score(X_test,y_test))
     
