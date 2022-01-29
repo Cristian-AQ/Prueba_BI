@@ -19,15 +19,15 @@ def app():
     user_input = st.text_input('Introducir TICKER de la empresa' , 'MSFT')
     st.title('Model - SUPPORT VECTOR REGRESION')
     ticker = user_input
-    period1 = int(time.mktime(datetime.datetime(2021, 12, 1, 23, 59).timetuple()))
+    period1 = int(time.mktime(datetime.datetime(2021, 11, 30, 23, 59).timetuple()))
     period2 = int(time.mktime(datetime.datetime(2021, 12, 31, 23, 59).timetuple()))
     interval = '1d'
     query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
-    df = pd.read_csv(query_string)
+    df_svr = pd.read_csv(query_string)
 
     # Seleccion de datos
     # Obtenemos la data menos la ultima fila
-    data = df.head(len(df)-1)
+    data = df_svr.head(len(df_svr)-1)
 
     days = list()
     adj_close_prices = list()
@@ -37,7 +37,7 @@ def app():
 
     # Describiendo los datos
     st.subheader('Datos del 2021 de Diciembre') 
-    st.write(data.head())
+    st.write(data)
     
     
     for day in df_days:
@@ -53,7 +53,7 @@ def app():
     lin_svr = SVR(kernel = 'linear', C=1000)
     lin_svr.fit(days, adj_close_prices)
     # Creamos y entrenamos un modelo SVR usando un kernel polinomial
-    pol_svr = SVR(kernel = 'poly', degree = 2)
+    pol_svr = SVR(kernel = 'poly', C=1000, degree = 2)
     pol_svr.fit(days, adj_close_prices)
     # Creamos y entrenamos un modelo SVR usando un kernel rbf
     rbf_svr = SVR(kernel = 'rbf', C=1000, gamma = 0.15)
@@ -72,13 +72,16 @@ def app():
 
 
     #Mostrar el precio predecido para el dato dado
-    daytest = [[196]]
-    st.write('El modelo SVR RBF predijo: ', rbf_svr.predict(daytest))
-    st.write('El modelo SVR Lineal predijo: ', lin_svr.predict(daytest))
-    st.write('El modelo SVR Polinomial predijo: ', pol_svr.predict(daytest))
+    daytest = [[31]]
+    st.write('El modelo SVR RBF predijo: ')
+    st.write(rbf_svr.predict(daytest))
+    st.write('El modelo SVR Lineal predijo: ')
+    st.write(lin_svr.predict(daytest))
+    st.write('El modelo SVR Polinomial predijo: ')
+    st.write(pol_svr.predict(daytest))
+
 
 
     # Mostrar el precio real para el dato dado
     st.subheader('El precio real es:')
-    st.success(df['Adj Close'][21])
-
+    st.write(df_svr['Adj Close'][21])
