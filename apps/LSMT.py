@@ -6,7 +6,8 @@ import streamlit as st
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from sklearn.preprocessing import MinMaxScaler
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as 
+import streamlit as st
 
 def graficar_predicciones(real, prediccion):
     plt.plot(real[0:len(prediccion)],color='red', label='Valor real de la acción')
@@ -21,7 +22,7 @@ def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title('Predicción de acciones')
     user_input = st.text_input('Introducir TICKER de la empresa' , 'TSLA')
-    st.title('Model - LONGSHORTTERMMEMORY')
+    st.title('Model - LONG-SHORT TERM MEMORY')
     ticker = user_input
     period1 = int(time.mktime(datetime.datetime(2019, 1, 1, 23, 59).timetuple()))
     period2 = int(time.mktime(datetime.datetime(2022, 1, 20, 23, 59).timetuple()))
@@ -30,6 +31,11 @@ def app():
     data = pd.read_csv(query_string)
     set_entrenamiento = data[:2021].iloc[:,2:3]
     set_validacion = data[:2022].iloc[:,2:3]
+
+    # Describiendo los datos
+    st.subheader('Datos del 2020 al 2022') 
+    st.write(data.describe())
+    
     sc = MinMaxScaler(feature_range=(0,1))
     set_entrenamiento_escalado = sc.fit_transform(set_entrenamiento)
     time_step = 60
