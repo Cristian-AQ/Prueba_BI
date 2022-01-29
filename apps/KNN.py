@@ -77,7 +77,7 @@ def app():
     Cumulative_Strategy_returns = df[split:]['Startegy_returns'].cumsum() * 100
 
     # Plot the results to visualize the performance
-
+    st.subheader('Rendimiento')
     plt.figure(figsize=(10,5))
     plt.plot(Cumulative_SPY_returns, color='r',label = 'SPY Returns')
     plt.plot(Cumulative_Strategy_returns, color='g', label = 'Strategy Returns')
