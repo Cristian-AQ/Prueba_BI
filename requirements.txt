@@ -19,3 +19,4 @@ threadpoolctl==3.0.0
 Werkzeug==2.0.2
 seaborn
 prophet
+tensorflow==2.7.0
