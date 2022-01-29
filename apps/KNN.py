@@ -70,5 +70,15 @@ def app():
     #rmse
     rms=np.sqrt(np.mean(np.power((np.array(y_valid)-np.array(preds)),2)))
     
-    st.subheader(f'RMSE: {rms}') 
+    st.subheader(f'RMSE: {rms}')
+    
+    pd.options.mode.chained_assignment = None
+
+    #plot
+    valid['Predictions'] = 0
+    valid['Predictions'] = preds
+    # st.subheader('Datos del 2021 de Diciembre') 
+    st.write(valid[['Close', 'Predictions']])
+    st.write(train['Close'])
+    
     
