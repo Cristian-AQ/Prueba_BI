@@ -51,7 +51,7 @@ def app():
     modelo.add(LSTM(units=na, input_shape=dim_entrada)) #se especifica el num de neuronas
     modelo.add(Dense(units=dim_salida))
     modelo.compile(optimizer='rmsprop', loss='mse')
-    modelo.fit(X_train,Y_train,epochs=20,batch_size=32)
+    modelo.fit(X_train,y_train,epochs=20,batch_size=32)
     st.subheader('Score del modelo') 
     st.success(modelo.score(X_test,y_test))
     
