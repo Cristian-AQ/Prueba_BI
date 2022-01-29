@@ -19,5 +19,5 @@ SQLAlchemy==1.4.29
 threadpoolctl==3.0.0
 Werkzeug==2.0.2
 seaborn
-prophet
+fbprophet
 tensorflow==2.7.0
