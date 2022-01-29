@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import seaborn as sb
 import time
 import datetime
 import streamlit as st
@@ -32,18 +33,35 @@ def app():
     st.subheader('Datos del 2021 de Diciembre') 
     st.write(df.head())
     
+    st.subheader('Detalles') 
     df.reset_index(inplace=True)
     st.write(df.describe())
     
     # Predictor variables
+    st.subheader('Apertura-Cierre | Altos-Bajos') 
     df['Open-Close'] = df.Open - df.Close
     df['High-Low'] = df.High - df.Low
     df =df.dropna()
     X= df[['Open-Close', 'High-Low']]
     st.write(X.head())
     
+    # Correlación de Pearson
+    st.subheader('Coeficiente de correlación de Pearson') 
+    corr = df.corr(method='pearson')
+    st.write(corr)
+    
+    sb.heatmap(
+        corr,
+        xticklabels=corr.columns, 
+        yticklabels=corr.columns,
+        cmap='RdBu_r', 
+        annot=True, 
+        linewidth=0.5,
+    )
+    st.pyplot()
+    
     # Target variable
-    Y= np.where(df['Close'].shift(-1)>df['Close'],1,-1)
+    Y= np.where(df['Close'].shift(-1) > df['Close'],1,-1)
     
     # Splitting the dataset
     split_percentage = 0.7
