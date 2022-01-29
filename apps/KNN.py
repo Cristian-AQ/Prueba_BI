@@ -67,5 +67,8 @@ def app():
     #fit the model and make predictions
     model.fit(x_train,y_train)
     preds = model.predict(x_valid)
-    st.write(preds)
+    #rmse
+    rms=np.sqrt(np.mean(np.power((np.array(y_valid)-np.array(preds)),2)))
+    
+    st.write(rms)
     
