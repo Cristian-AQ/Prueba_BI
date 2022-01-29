@@ -37,7 +37,48 @@ def app():
     df =df.dropna()
     X= df[['Open-Close', 'High-Low']]
     st.write(X.head())
+    
+    # Target variable
+    Y= np.where(df['Close'].shift(-1)>df['Close'],1,-1)
+    
+    # Splitting the dataset
+    split_percentage = 0.7
+    split = int(split_percentage*len(df))
 
+    X_train = X[:split]
+    Y_train = Y[:split]
+
+    X_test = X[split:]
+    Y_test = Y[split:]
+    
+    # Instantiate KNN learning model(k=15)
+    knn = KNeighborsClassifier(n_neighbors=15)
+
+    # fit the model
+    knn.fit(X_train, Y_train)
+
+    # Accuracy Score
+    accuracy_train = accuracy_score(Y_train, knn.predict(X_train))
+    accuracy_test = accuracy_score(Y_test, knn.predict(X_test))
+    
+    st.subheader('Train_data Accuracy: %.2f' %accuracy_train)
+    st.subheader('Test_data Accuracy: %.2f' %accuracy_test)
+
+    # Predicted Signal
+    df['Predicted_Signal'] = knn.predict(X)
+
+    # SPY Cumulative Returns
+    df['SPY_returns'] = np.log(df['Close']/df['Close'].shift(1))
+    Cumulative_SPY_returns = df[split:]['SPY_returns'].cumsum() * 100
+
+    # Cumulative Strategy Returns 
+    df['Startegy_returns'] = df['SPY_returns']* df['Predicted_Signal'].shift(1)
+    Cumulative_Strategy_returns = df[split:]['Startegy_returns'].cumsum() * 100
+    
+    Std = Cumulative_Strategy_returns.std()
+    Sharpe = (Cumulative_Strategy_returns-Cumulative_SPY_returns)/Std
+    Sharpe = Sharpe.mean()
+    st.subheader('Sharpe ratio: %.2f'%Sharpe)
     
     # #setting index as date
     # df['Date'] = pd.to_datetime(df.Date,format='%Y-%m-%d')
