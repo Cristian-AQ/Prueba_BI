@@ -17,7 +17,7 @@ def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
     st.title('Predicción de acciones')
     user_input = st.text_input('Introducir TICKER de la empresa' , 'MSFT')
-    st.title('Model - Support Vector Regresion')
+    st.title('Model - SUPPORT VECTOR REGRESION')
     ticker = user_input
     period1 = int(time.mktime(datetime.datetime(2021, 12, 1, 23, 59).timetuple()))
     period2 = int(time.mktime(datetime.datetime(2021, 12, 31, 23, 59).timetuple()))
