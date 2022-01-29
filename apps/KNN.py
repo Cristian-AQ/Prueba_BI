@@ -82,7 +82,7 @@ def app():
     plt.plot(Cumulative_SPY_returns, color='r',label = 'SPY Returns')
     plt.plot(Cumulative_Strategy_returns, color='g', label = 'Strategy Returns')
     plt.legend()
-    plt.show()
+    st.pyplot()
     
     Std = Cumulative_Strategy_returns.std()
     Sharpe = (Cumulative_Strategy_returns-Cumulative_SPY_returns)/Std
