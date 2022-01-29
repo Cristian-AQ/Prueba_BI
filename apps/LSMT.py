@@ -32,9 +32,7 @@ def app():
     set_entrenamiento = data[:2021].iloc[:,2:3]
     set_validacion = data[:2022].iloc[:,2:3]
 
-    # Describiendo los datos
-    st.subheader('Datos del 2020 al 2022') 
-    st.write(data.describe())
+    
     
     sc = MinMaxScaler(feature_range=(0,1))
     set_entrenamiento_escalado = sc.fit_transform(set_entrenamiento)
