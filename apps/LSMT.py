@@ -8,6 +8,7 @@ from tensorflow.keras.layers import LSTM, Dense
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import streamlit as st
+from sklearn.model_selection import train_test_split
 
 def app():
     st.set_option('deprecation.showPyplotGlobalUse', False)
