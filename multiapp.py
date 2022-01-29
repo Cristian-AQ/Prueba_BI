@@ -44,7 +44,13 @@ class MultiApp:
         #         <a href='https://www.youtube.com/watch?v=hoPvOIJvrb8' target="_self">HOME</a>
         # ''', unsafe_allow_html=True)
         st.markdown('''
-                ### GRUPO 04
+                # GRUPO 04
+                ### Aquino Limache Cristian
+                ### Chavez Malca Emerzon
+                ### Galarza Arevalo Jonathan
+                ### Pomiano Minaya Frank
+                ### Quinteros Peralta Rodrigo
+                ### Villarreal Doroteo Omar
         ''')
         app = st.selectbox(
             'Elija el modelo de su preferencia',
