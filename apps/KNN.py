@@ -4,7 +4,7 @@ import time
 import datetime
 import streamlit as st
 
-# from fastai.tabular.core import add_datepart
+from fastai.tabular.core import add_datepart
 from sklearn.preprocessing import MinMaxScaler
 from sklearn import neighbors
 from sklearn.model_selection import GridSearchCV
