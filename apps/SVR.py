@@ -49,7 +49,7 @@ def app():
     # Seleccion de datos
     # Obtenemos la data menos la ultima fila
     data = df_svr.head(len(df_svr)-1)
-
+    data = data.dropna()
 
     days = list()
     adj_close_prices = list()
