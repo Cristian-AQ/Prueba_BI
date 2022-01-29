@@ -61,6 +61,12 @@ def app():
     X_test = np.reshape(X_test, (X_test.shape[0],X_test.shape[1],1))
     prediccion = modelo.predict(X_test)
     prediccion = sc.inverse_transform(prediccion)
-    graficar_predicciones(set_validacion.values,prediccion)
+    plt.plot(set_validacion.values[0:len(prediccion)],color='red', label='Valor real de la acción')
+    plt.plot(prediccion, color='blue', label='Predicción de la acción')
+    plt.ylim(1.1 * np.min(prediccion)/2, 1.1 * np.max(prediccion))
+    plt.xlabel('Tiempo')
+    plt.ylabel('Valor de la acción')
+    plt.legend()
+    plt.show()
     
     # continuar con su codigo
