@@ -43,6 +43,9 @@ class MultiApp:
         # st.markdown('''
         #         <a href='https://www.youtube.com/watch?v=hoPvOIJvrb8' target="_self">HOME</a>
         # ''', unsafe_allow_html=True)
+        st.markdown('''
+                ### GRUPO 04
+        ''')
         app = st.selectbox(
             'Elija el modelo de su preferencia',
             self.apps,
