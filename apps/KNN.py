@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import time
@@ -74,6 +75,14 @@ def app():
     # Cumulative Strategy Returns 
     df['Startegy_returns'] = df['SPY_returns']* df['Predicted_Signal'].shift(1)
     Cumulative_Strategy_returns = df[split:]['Startegy_returns'].cumsum() * 100
+
+    # Plot the results to visualize the performance
+
+    plt.figure(figsize=(10,5))
+    plt.plot(Cumulative_SPY_returns, color='r',label = 'SPY Returns')
+    plt.plot(Cumulative_Strategy_returns, color='g', label = 'Strategy Returns')
+    plt.legend()
+    plt.show()
     
     Std = Cumulative_Strategy_returns.std()
     Sharpe = (Cumulative_Strategy_returns-Cumulative_SPY_returns)/Std
