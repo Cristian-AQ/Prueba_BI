@@ -70,5 +70,5 @@ def app():
     #rmse
     rms=np.sqrt(np.mean(np.power((np.array(y_valid)-np.array(preds)),2)))
     
-    st.write(rms)
+    st.subheader(f'RMSE: {rms}') 
     
