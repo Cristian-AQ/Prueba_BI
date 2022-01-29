@@ -3,8 +3,8 @@ import pandas as pd
 import time
 import datetime
 import streamlit as st
-from keras.models import Sequential
-from keras.layers import LSTM, Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 
