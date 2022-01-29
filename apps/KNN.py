@@ -4,7 +4,7 @@ import time
 import datetime
 import streamlit as st
 
-from fastai.tabular.core import add_datepart
+# from fastai.tabular.core import add_datepart
 from sklearn.preprocessing import MinMaxScaler
 from sklearn import neighbors
 from sklearn.model_selection import GridSearchCV
@@ -40,21 +40,21 @@ def app():
         new_data['Date'][i] = data['Date'][i]
         new_data['Close'][i] = data['Close'][i]
         
-    add_datepart(new_data, 'Date')
-    new_data.drop('Elapsed', axis=1, inplace=True)  #elapsed will be the time stamp
+    # add_datepart(new_data, 'Date')
+    # new_data.drop('Elapsed', axis=1, inplace=True)  #elapsed will be the time stamp
 
-    #split into train and validation
-    train = new_data[:987]
-    valid = new_data[987:]
+    # #split into train and validation
+    # train = new_data[:987]
+    # valid = new_data[987:]
 
-    x_train = train.drop('Close', axis=1)
-    y_train = train['Close']
-    x_valid = valid.drop('Close', axis=1)
-    y_valid = valid['Close']
+    # x_train = train.drop('Close', axis=1)
+    # y_train = train['Close']
+    # x_valid = valid.drop('Close', axis=1)
+    # y_valid = valid['Close']
 
-    #scaling data
-    scaler = MinMaxScaler(feature_range=(0, 1))
-    x_train_scaled = scaler.fit_transform(x_train)
-    x_train = pd.DataFrame(x_train_scaled)
-    x_valid_scaled = scaler.fit_transform(x_valid)
-    x_valid = pd.DataFrame(x_valid_scaled)
+    # #scaling data
+    # scaler = MinMaxScaler(feature_range=(0, 1))
+    # x_train_scaled = scaler.fit_transform(x_train)
+    # x_train = pd.DataFrame(x_train_scaled)
+    # x_valid_scaled = scaler.fit_transform(x_valid)
+    # x_valid = pd.DataFrame(x_valid_scaled)
