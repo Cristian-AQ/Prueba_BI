@@ -3,7 +3,7 @@ from multiapp import MultiApp
 from apps import forestpractice # import your app modules here
 from apps import SVR
 # from apps import KNN
-# from apps import LSMT
+from apps import LSMT
 # from apps import RLogistica
 # from apps import SVC
 # from apps import NewModel
