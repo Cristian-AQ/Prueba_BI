@@ -19,15 +19,37 @@ def app():
     user_input = st.text_input('Introducir TICKER de la empresa' , 'MSFT')
     st.title('Model - SUPPORT VECTOR REGRESION')
     ticker = user_input
-    period1 = int(time.mktime(datetime.datetime(2021, 11, 30, 23, 59).timetuple()))
-    period2 = int(time.mktime(datetime.datetime(2021, 12, 31, 23, 59).timetuple()))
+
+    tiempo = st.date_input('Introduzca la fecha')
+    tiempo = str(tiempo)
+
+    anio_presente = int(tiempo[:4])
+    mes_presente = int(tiempo[5:7])
+    dia_presente = int(tiempo[8:10])
+
+
+    anio_anterior = int(tiempo[:4])
+    mes_anterior = int(tiempo[5:7])
+    dia_anterior = 30
+
+    if (dia_presente - 30) < 0:
+        dia_anterior = dia_presente
+        mes_anterior = mes_anterior - 1
+    else:
+        dia_anterior = 1
+    if mes_anterior == 0:
+        mes_anterior = 12
+        anio_anterior = int(tiempo[:4]) - 1
+
+    period1 = int(time.mktime(datetime.datetime(anio_anterior, mes_anterior, dia_anterior, 23, 59).timetuple()))
+    period2 = int(time.mktime(datetime.datetime(anio_presente, mes_presente, dia_presente, 23, 59).timetuple()))
     interval = '1d'
     query_string = f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
     df_svr = pd.read_csv(query_string)
-
     # Seleccion de datos
     # Obtenemos la data menos la ultima fila
     data = df_svr.head(len(df_svr)-1)
+
 
     days = list()
     adj_close_prices = list()
@@ -84,4 +106,4 @@ def app():
 
     # Mostrar el precio real para el dato dado
     st.subheader('El precio real es:')
-    st.write(df_svr['Adj Close'][21])
+    st.write(df_svr['Adj Close'][len(df_svr)-1])
