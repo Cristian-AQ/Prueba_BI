@@ -3,7 +3,11 @@ import pandas as pd
 import time
 import datetime
 import streamlit as st
+
+from fastai.tabular.core import add_datepart
 from sklearn.preprocessing import MinMaxScaler
+from sklearn import neighbors
+from sklearn.model_selection import GridSearchCV
 
 
 def app():
@@ -19,15 +23,38 @@ def app():
     df = pd.read_csv(query_string)
     # continuar con su codigo
     
-    scaler = MinMaxScaler(feature_range=(0, 1))
     #setting index as date
     df['Date'] = pd.to_datetime(df.Date,format='%Y-%m-%d')
     df.index = df['Date']
 
-    #plot
-        # Describiendo los datos
     st.subheader('Datos del 2021 de Diciembre') 
     st.write(df.head())
     st.subheader('Historial del precio de cierre') 
     st.write(df['Close'])
+    
+    #creating dataframe with date and the target variable
+    data = df.sort_index(ascending=True, axis=0)
+    new_data = pd.DataFrame(index=range(0,len(df)),columns=['Date', 'Close'])
 
+    for i in range(0,len(data)):
+        new_data['Date'][i] = data['Date'][i]
+        new_data['Close'][i] = data['Close'][i]
+        
+    add_datepart(new_data, 'Date')
+    new_data.drop('Elapsed', axis=1, inplace=True)  #elapsed will be the time stamp
+
+    #split into train and validation
+    train = new_data[:987]
+    valid = new_data[987:]
+
+    x_train = train.drop('Close', axis=1)
+    y_train = train['Close']
+    x_valid = valid.drop('Close', axis=1)
+    y_valid = valid['Close']
+
+    #scaling data
+    scaler = MinMaxScaler(feature_range=(0, 1))
+    x_train_scaled = scaler.fit_transform(x_train)
+    x_train = pd.DataFrame(x_train_scaled)
+    x_valid_scaled = scaler.fit_transform(x_valid)
+    x_valid = pd.DataFrame(x_valid_scaled)
