@@ -9,6 +9,8 @@ import datetime
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVR
 
+from sklearn.metrics import plot_roc_curve
+
 from sklearn import metrics
 import streamlit as st
 
@@ -69,7 +71,6 @@ def app():
         adj_close_prices.append( float(adj_close_price) )
 
 
-
     # Creamos 3 modelos SVR
     # Creamos y entrenamos un modelo SVR usando un kernel lineal
     lin_svr = SVR(kernel = 'linear', C=1000)
@@ -92,22 +93,38 @@ def app():
     st.pyplot()
 
 
+    #modelo = rbf_svr
+    #X_test = days
+    #y_test = adj_close_prices
+
+    #Visualizaciones 
+    #pred_modelo = modelo.predict(X_test)
+    #st.subheader('Classification Report')
+    #st.text(classification_report(y_test,pred_modelo))
+    # st.write(st.table(classification_report(y_test,pred_modelo)))
+    #st.subheader('Confusion Matrix')
+    #plot_confusion_matrix(modelo,X_test,y_test)
+    #st.pyplot()
+
 
     #Mostrar el precio predecido para el dato dado
-    daytest = [[31]]
-    st.write('El modelo SVR RBF predijo: ')
+    daytest = [[dia_presente]]
+
+    st.subheader('El modelo SVR RBF predijo: ')
     st.write(rbf_svr.predict(daytest))
-    st.write('El modelo SVR Lineal predijo: ')
-    st.write(lin_svr.predict(daytest))
-    st.write('El modelo SVR Polinomial predijo: ')
-    st.write(pol_svr.predict(daytest))
-
-
-    st.subheader('Score del modelo RBF') 
+    st.write('Score del modelo RBF') 
     st.success(rbf_svr.score(days,adj_close_prices))
-    st.subheader('Score del modelo Lineal') 
+
+
+
+    st.subheader('El modelo SVR Lineal predijo: ')
+    st.write(lin_svr.predict(daytest))
+    st.write('Score del modelo Lineal') 
     st.success(lin_svr.score(days,adj_close_prices))
-    st.subheader('Score del modelo Polinomial') 
+
+    st.subheader('El modelo SVR Polinomial predijo: ')
+    st.write(pol_svr.predict(daytest))   
+    st.write('Score del modelo Polinomial') 
     st.success(pol_svr.score(days,adj_close_prices))
 
     # Mostrar el precio real para el dato dado

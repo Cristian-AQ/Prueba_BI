@@ -12,7 +12,7 @@ from apps import SVC
 app = MultiApp()
 
 app.add_app("RANDOM FOREST CLASSIFIER", forestpractice.app)
-app.add_app("SUPPORT VECTOR REGRESION (SVR", SVR.app)
+app.add_app("SUPPORT VECTOR REGRESION (SVR)", SVR.app)
 
 app.add_app("REGRESION LOGISTICA", RLogistica.app)
 app.add_app("KNN", KNN.app)
