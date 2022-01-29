@@ -102,6 +102,7 @@ def app():
     st.write('El modelo SVR Polinomial predijo: ')
     st.write(pol_svr.predict(daytest))
 
+
     st.subheader('Score del modelo RBF') 
     st.success(rbf_svr.score(days,adj_close_prices))
     st.subheader('Score del modelo Lineal') 
